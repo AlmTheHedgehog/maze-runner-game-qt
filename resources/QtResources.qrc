@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>field/map-cell16px.png</file>
+        <file>collectableItems/PowerPill.png</file>
+    </qresource>
+</RCC>

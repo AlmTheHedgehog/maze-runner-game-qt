@@ -1,13 +1,11 @@
 #include <QApplication>
-#include <QPushButton>
+#include "GameField.h"
 
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
 
-    QPushButton hello("Hello, world!");
-    hello.resize(100, 30);
-
-    hello.show();
+    GameField gamefield(36, 28);
+    
     return app.exec();
 }

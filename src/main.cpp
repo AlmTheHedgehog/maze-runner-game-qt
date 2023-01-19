@@ -5,7 +5,7 @@ int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
 
-    GameField gamefield(36, 28);
+    GameField gamefield(FIELD_HEIGHT_CELLS, FIELD_WIDTH_CELLS);
     
     return app.exec();
 }

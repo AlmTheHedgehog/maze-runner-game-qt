@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>field/map-cell16px.png</file>
-        <file>collectableItems/PowerPill.png</file>
+        <file>creatures/Pacman_ball.png</file>
     </qresource>
 </RCC>

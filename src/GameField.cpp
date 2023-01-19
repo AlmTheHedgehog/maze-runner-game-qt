@@ -3,12 +3,12 @@
 GameField::GameField(short int heightInCells, short int widthInCells):
                     HEIGHT_IN_CELLS(heightInCells), WIDTH_IN_CELLS(widthInCells),
                     WIDTH_PX(widthInCells * CELL_PIXEL_SIZE), HEIGHT_PX(heightInCells * CELL_PIXEL_SIZE){
-    gameWindow.setFixedSize(WIDTH_PX, HEIGHT_PX);
+    setFixedSize(WIDTH_PX, HEIGHT_PX);
     initBackGroundPicture();
     initPacman();
     
 
-    gameWindow.show();
+    show();
 }
 
 GameField::~GameField(){
@@ -18,11 +18,15 @@ GameField::~GameField(){
 void GameField::initBackGroundPicture(){
     QPixmap pixmap(":/field/map-cell16px.png");
     backGroundPicture.setPixmap(pixmap);
-    backGroundPicture.setParent(&gameWindow);
+    backGroundPicture.setParent(this);
 }
 
 void GameField::initPacman(){
-    mPacman = new Pacman(&gameWindow, 2, 4);
+    mPacman = new Pacman(this, 2, 4);
     connect(&gameTimer, &QTimer::timeout, mPacman, &Pacman::onTick);
-    gameTimer.start(30);
+    gameTimer.start(1000/FPS);
+}
+
+void GameField::keyPressEvent(QKeyEvent *event){
+    mPacman->keyPressProcessing(event);
 }

@@ -5,5 +5,8 @@
 #define FIELD_WIDTH_CELLS 28
 #define FIELD_HEIGHT_CELLS 36
 
+//Graphics
+#define FPS 80
+
 //Speeds
-#define PACMAN_SPEED 2
+#define PACMAN_SPEED 1

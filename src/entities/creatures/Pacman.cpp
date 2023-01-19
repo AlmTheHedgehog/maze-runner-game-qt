@@ -1,16 +1,29 @@
 #include "Pacman.h"
-#include <iostream>
 
 Pacman::Pacman(QWidget* parent, int xCell, int yCell):Creature(parent, QPixmap(":/creatures/Pacman_ball.png"), xCell, yCell){
     xSpeed = PACMAN_SPEED;
+    ySpeed = 0;
+    curMove = moveRight;
+    nextMove = noMove;
 }
 
-void Pacman::onTick(){
-    if(getCellX() > FIELD_WIDTH_CELLS - 1){
-        xSpeed = -PACMAN_SPEED;
+void Pacman::keyPressProcessing(QKeyEvent *event){
+    switch(event->key()){
+        case Qt::Key_Up:
+            curMove = moveUp;
+            break;
+        case Qt::Key_Down:
+            curMove = moveDown;
+            break;
+        case Qt::Key_Left:
+            curMove = moveLeft;
+            break;
+        case Qt::Key_Right:
+            curMove = moveRight;
+            break;
     }
-    if(getCellX() < 0){
-        xSpeed = PACMAN_SPEED;
-    }
-    move(xSpeed, 0);
+}
+
+void Pacman::preActiononTick(){
+    
 }

@@ -16,7 +16,6 @@ class GameField : public QWidget {
         ~GameField();
 
     private:
-        QWidget gameWindow;
         QLabel backGroundPicture;
         QTimer gameTimer;
         Pacman *mPacman;
@@ -24,6 +23,7 @@ class GameField : public QWidget {
 
         void initBackGroundPicture();
         void initPacman();
+        void keyPressEvent(QKeyEvent *event);
 
 };
 

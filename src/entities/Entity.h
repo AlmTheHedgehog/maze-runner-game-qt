@@ -11,8 +11,6 @@ class Entity : public QLabel{
         void move(int dx, int dy);
         void setPosition(int x, int y);
         void setCell(int xCell, int yCell);
-        int getCellX();
-        int getCellY();
         int getX();
         int getY();
         

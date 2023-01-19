@@ -22,7 +22,7 @@ void GameField::initBackGroundPicture(){
 }
 
 void GameField::initPacman(){
-    mPacman = new Pacman(this, 2, 4);
+    mPacman = new Pacman(this, 1, 4);
     connect(&gameTimer, &QTimer::timeout, mPacman, &Pacman::onTick);
     gameTimer.start(1000/FPS);
 }

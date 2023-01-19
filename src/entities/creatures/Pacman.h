@@ -11,9 +11,6 @@ class Pacman : public Creature{
 
     protected:
         void preActiononTick() override;
-
-    private:
-        int xSpeed;
-        int ySpeed;
+        void newMoveDir(MoveDirection newDir);
 
 };

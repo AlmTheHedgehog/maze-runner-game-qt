@@ -12,27 +12,19 @@ void Entity::move(int dx, int dy)
 }
 
 void Entity::setPosition(int x, int y){
-    QLabel::move(x - HALF_OF_CELL, y - HALF_OF_CELL);
+    QLabel::move(x, y);
 }
 
 void Entity::setCell(int xCell, int yCell){
     QLabel::move(xCell * CELL_PIXEL_SIZE - HALF_OF_CELL, yCell * CELL_PIXEL_SIZE - HALF_OF_CELL);
 }
 
-int Entity::getCellX(){
-    return (pos().x() + 1 + HALF_OF_CELL) / CELL_PIXEL_SIZE;
-}
-
-int Entity::getCellY(){
-    return (pos().y() + 1 + HALF_OF_CELL) / CELL_PIXEL_SIZE;
-}
-
 int Entity::getX(){
-    return pos().x() + HALF_OF_CELL;
+    return pos().x();
 }
 
 int Entity::getY(){
-    return pos().y() + HALF_OF_CELL;
+    return pos().y();
 }
 
 void Entity::setImage(QPixmap imgPixmap){

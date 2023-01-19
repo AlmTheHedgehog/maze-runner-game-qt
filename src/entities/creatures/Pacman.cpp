@@ -1,29 +1,38 @@
 #include "Pacman.h"
 
-Pacman::Pacman(QWidget* parent, int xCell, int yCell):Creature(parent, QPixmap(":/creatures/Pacman_ball.png"), xCell, yCell){
-    xSpeed = PACMAN_SPEED;
-    ySpeed = 0;
+Pacman::Pacman(QWidget* parent, int xCell, int yCell):
+                Creature(parent, QPixmap(":/creatures/Pacman_ball.png"), PACMAN_SPEED, xCell, yCell){
     curMove = moveRight;
+    setSpeedVector(PACMAN_SPEED, 0);
     nextMove = noMove;
 }
 
 void Pacman::keyPressProcessing(QKeyEvent *event){
     switch(event->key()){
         case Qt::Key_Up:
-            curMove = moveUp;
+            newMoveDir(moveUp);
             break;
         case Qt::Key_Down:
-            curMove = moveDown;
+            newMoveDir(moveDown);
             break;
         case Qt::Key_Left:
-            curMove = moveLeft;
+            newMoveDir(moveLeft);
             break;
         case Qt::Key_Right:
-            curMove = moveRight;
+            newMoveDir(moveRight);
             break;
     }
 }
 
 void Pacman::preActiononTick(){
     
+}
+
+void Pacman::newMoveDir(MoveDirection newDir){
+    if(curMove == noMove){
+        curMove = newDir;
+        setSpeedVector(curMove);
+    }else{
+        nextMove = newDir;
+    }
 }

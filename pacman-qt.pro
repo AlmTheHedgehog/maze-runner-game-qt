@@ -18,11 +18,8 @@ RESOURCES = resources/QtResources.qrc
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-INCLUDEPATH += $$PWD/include $$PWD/src/ $$PWD/src/entities $$PWD/src/entities/creatures
-HEADERS += src/*.h src/entities/*.h src/entities/creatures/*.h
-SOURCES += src/*.cpp src/entities/*.cpp src/entities/creatures/*.cpp
-
-#HEADERS += src/GameField.h src/entities/Entity.h src/entities/creatures/Creature.h src/entities/creatures/Pacman.h
-#SEURCES += src/main.cpp src/GameField.cpp src/entities/Entity.cpp src/entities/creatures/Creature.cpp src/entities/creatures/Pacman.cpp
+INCLUDEPATH += $$PWD/include $$PWD/src/ $$PWD/src/entities $$PWD/src/entities/creatures $$PWD/src/field
+HEADERS += src/*.h src/entities/*.h src/entities/creatures/*.h src/field/*.h
+SOURCES += src/*.cpp src/entities/*.cpp src/entities/creatures/*.cpp src/field/*.cpp
 
 QT += widgets

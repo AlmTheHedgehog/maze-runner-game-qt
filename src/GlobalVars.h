@@ -11,12 +11,13 @@
 //**************************************
 //Graphics
 //**************************************
-#define FPS 80
+#define FPS 80  // 80 - good
+#define PACMAN_IMAGE_CHANGE_PER_SECOND 8
 
 //**************************************
 //Speeds
 //**************************************
-#define PACMAN_SPEED 1
+#define PACMAN_SPEED 1  // 1- good
 
 //**************************************
 //Map matrix. Where 0 - empty space, 1 - wall, 2 - small coin, 3 - big pill, 4 - doors to ghosts room, 5 - Pacman

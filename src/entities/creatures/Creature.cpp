@@ -1,7 +1,9 @@
 #include "Creature.h"
 
-Creature::Creature(QWidget* parent, QPixmap imgPixmap, int oneStepSpeed, int xCell, int yCell):
-                    Entity(parent, imgPixmap, xCell, yCell), oneStepSpeed(oneStepSpeed){
+Creature::Creature(QWidget* parent, QPixmap imgPixmap, int oneStepSpeed, int xCell, int yCell, QString ballFile, 
+                QString up_File, QString down_File,QString left_File, QString right_File, int imgChangeCounterLimit):
+                    Entity(parent, imgPixmap, xCell, yCell), oneStepSpeed(oneStepSpeed), 
+                    sprites(ballFile, up_File, down_File, left_File, right_File, imgChangeCounterLimit){
 }
 
 void Creature::setSpeedVector(int newXSpeed, int newYSpeed){
@@ -47,12 +49,13 @@ bool Creature::isNextPixelCellWall(MoveDirection moveDirToCheck){
 }
 
 void Creature::onTick(){
-    preActiononTick();
+    preMoveActiononOnTick();
 
     if(!isNextPixelCellWall(nextMove)){
         curMove = nextMove;
         nextMove = noMove;
         setSpeedVector(curMove);
+        changeMoveImg(curMove);
     }else if(isNextPixelCellWall(curMove)){
         curMove = noMove;
         setSpeedVector(0, 0);
@@ -66,3 +69,11 @@ void Creature::onTick(){
 
     move(xSpeed, ySpeed);  //if curMove == noMove than vector is 0 and we are busy-waiting(probably use condition var)
 }
+
+Creature::SpritesContainer::SpritesContainer(QString ballFile, QString up_File, QString down_File, 
+                        QString left_File, QString right_File, int imgChangeCounterLimit):
+                        ballImg(ballFile), up_Img(up_File), down_Img(down_File), 
+                        left_Img(left_File), right_Img(right_File), 
+                        IMG_CHANGE_COUNTER_LIMIT(imgChangeCounterLimit){
+    imgChangeCounter = 0;
+};

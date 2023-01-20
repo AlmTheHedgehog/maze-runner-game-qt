@@ -10,7 +10,9 @@ class Pacman : public Creature{
         void keyPressProcessing(QKeyEvent *event);
 
     protected:
-        void preActiononTick() override;
+        void preMoveActiononOnTick() override;
         void newMoveDir(MoveDirection newDir);
-
+    
+    private:
+        void changeMoveImg(MoveDirection curMove) override;
 };

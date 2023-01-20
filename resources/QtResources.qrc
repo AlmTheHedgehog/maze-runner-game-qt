@@ -2,5 +2,9 @@
     <qresource prefix="/">
         <file>field/map-cell16px.png</file>
         <file>creatures/Pacman_ball.png</file>
+        <file>creatures/Pacman_up_normal.png</file>
+        <file>creatures/Pacman_down_normal.png</file>
+        <file>creatures/Pacman_left_normal.png</file>
+        <file>creatures/Pacman_right_normal.png</file>
     </qresource>
 </RCC>

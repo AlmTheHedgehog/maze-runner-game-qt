@@ -4,7 +4,7 @@
 
 CONFIG += c++14
 TEMPLATE = app
-TARGET = bin/pacman-qt
+TARGET = bin/maze-runner-game-qt
 OBJECTS_DIR = build/
 MOC_DIR = build/
 
@@ -18,8 +18,8 @@ RESOURCES = resources/QtResources.qrc
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-INCLUDEPATH += $$PWD/include $$PWD/src/ $$PWD/src/entities $$PWD/src/entities/creatures $$PWD/src/field
-HEADERS += src/*.h src/entities/*.h src/entities/creatures/*.h src/field/*.h
-SOURCES += src/*.cpp src/entities/*.cpp src/entities/creatures/*.cpp src/field/*.cpp
+INCLUDEPATH += $$PWD/include $$PWD/src/ $$PWD/src/entities $$PWD/src/entities/creatures $$PWD/src/entities/items $$PWD/src/field 
+HEADERS += src/*.h src/entities/*.h src/entities/creatures/*.h src/entities/items/*.h src/field/*.h 
+SOURCES += src/*.cpp src/entities/*.cpp src/entities/creatures/*.cpp src/entities/items/*.cpp src/field/*.cpp
 
 QT += widgets

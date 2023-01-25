@@ -1,3 +1,4 @@
+rm bin/maze-runner-game-qt
 qmake
 make
-./bin/pacman-qt
+./bin/maze-runner-game-qt

@@ -1,5 +1,5 @@
-# pacman-qt
+# maze-runner-game-qt
 
-Pac-Man game which was made using QT
+maze-runner game which was made using QT
 
 To run compilation and execution use 'sh run.sh'

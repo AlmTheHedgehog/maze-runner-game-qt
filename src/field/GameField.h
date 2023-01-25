@@ -3,8 +3,11 @@
 #include <QLabel>
 #include <QTimer>
 #include <memory>
-#include "Pacman.h"
+#include <vector>
+#include "Jellyfish.h"
 #include "GlobalVars.h"
+#include "Plant.h"
+#include "Plankton.h"
 
 class GameField : public QWidget {
     Q_OBJECT
@@ -15,14 +18,19 @@ class GameField : public QWidget {
         GameField(short int heightInCells, short int widthInCells);
         ~GameField();
 
+    public slots:
+        void checkJellyfishCollision();  //TODO connect to wasMoved signal of Jellyfish. Use EachColactable.isCollision(). If it returns true, then delete item from items array and make an action(add points / eat ghosts).
+
+
     private:
         QLabel backGroundPicture;
         QTimer gameTimer;
-        Pacman *mPacman;
-        
+        Jellyfish *mainHero;
+        std::vector<Item> items;
 
         void initBackGroundPicture();
-        void initPacman();
+        void initField();
+        void initHeroes();
         void keyPressEvent(QKeyEvent *event);
 
 };

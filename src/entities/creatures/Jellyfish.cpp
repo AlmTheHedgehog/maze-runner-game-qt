@@ -1,13 +1,13 @@
-#include "Pacman.h"
+#include "Jellyfish.h"
 
-Pacman::Pacman(QWidget* parent, int xCell, int yCell):
-                Creature(parent, QPixmap(":/creatures/Pacman_ball.png"), PACMAN_SPEED, xCell, yCell,
-                ":/creatures/Pacman_ball.png", 
-                ":/creatures/Pacman_up_normal.png", 
-                ":/creatures/Pacman_down_normal.png",
-                ":/creatures/Pacman_left_normal.png", 
-                ":/creatures/Pacman_right_normal.png", 
-                ((1000/PACMAN_IMAGE_CHANGE_PER_SECOND)/(1000/FPS))){
+Jellyfish::Jellyfish(QWidget* parent, int xCell, int yCell):
+                Creature(parent, QPixmap(":/creatures/Jellyfish_ball.png"), JELLYFISH_SPEED, xCell, yCell,
+                ":/creatures/Jellyfish_ball.png", 
+                ":/creatures/Jellyfish_up.png", 
+                ":/creatures/Jellyfish_down.png",
+                ":/creatures/Jellyfish_left.png", 
+                ":/creatures/Jellyfish_right.png", 
+                ((1000/JELLYFISH_IMAGE_CHANGE_PER_SECOND)/(1000/FPS))){
     setImage(sprites.right_Img);
     sprites.curImg = sprites.Right;
     curMove = moveRight;
@@ -15,7 +15,7 @@ Pacman::Pacman(QWidget* parent, int xCell, int yCell):
     nextMove = noMove;
 }
 
-void Pacman::keyPressProcessing(QKeyEvent *event){
+void Jellyfish::keyPressProcessing(QKeyEvent *event){
     switch(event->key()){
         case Qt::Key_Up:
             newMoveDir(moveUp);
@@ -32,15 +32,18 @@ void Pacman::keyPressProcessing(QKeyEvent *event){
     }
 }
 
-void Pacman::preMoveActiononOnTick(){
+void Jellyfish::preMoveActiononOnTick(){
     if(sprites.imgChangeCounter >= sprites.IMG_CHANGE_COUNTER_LIMIT){
         changeMoveImg(curMove);
     }else{
         sprites.imgChangeCounter++;
     }
+    if(curMove != noMove){
+        emit jellyfishMoved();
+    }
 }
 
-void Pacman::newMoveDir(MoveDirection newDir){
+void Jellyfish::newMoveDir(MoveDirection newDir){
     if(curMove == noMove){
         curMove = newDir;
         setSpeedVector(curMove);
@@ -49,7 +52,7 @@ void Pacman::newMoveDir(MoveDirection newDir){
     }
 }
 
-void Pacman::changeMoveImg(MoveDirection curMove){
+void Jellyfish::changeMoveImg(MoveDirection curMove){
     sprites.imgChangeCounter = 0;
     if(sprites.curImg != sprites.ball){
         sprites.curImg = sprites.ball;

@@ -26,3 +26,7 @@ bool GameFieldLayout::isCreatureInWall(int xCreature, int yCreature)
             isWall(rightXcell, upYcell)||
             isWall(rightXcell, downYcell);
 }
+
+GameFieldLayout::CellType GameFieldLayout::getCellType(int xCell, int yCell){
+    return static_cast<CellType>(FIELD_MATRIX[yCell][xCell]);
+}

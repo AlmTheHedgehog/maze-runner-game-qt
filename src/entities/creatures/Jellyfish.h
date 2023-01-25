@@ -3,11 +3,14 @@
 #include "GlobalVars.h"
 #include <QKeyEvent>
 
-class Pacman : public Creature{
+class Jellyfish : public Creature{
     Q_OBJECT
     public:
-        Pacman(QWidget* parent, int xCell = 0, int yCell = 0);
+        Jellyfish(QWidget* parent, int xCell = 0, int yCell = 0);
         void keyPressProcessing(QKeyEvent *event);
+
+    signals:
+        void jellyfishMoved();
 
     protected:
         void preMoveActiononOnTick() override;

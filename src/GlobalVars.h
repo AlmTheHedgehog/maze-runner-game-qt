@@ -23,14 +23,16 @@
 //Global
 //**************************************
 #define NUMBER_OF_CREATURES 5
+#define SCORE_FOR_PLANKTON 200
+#define SCORE_FOR_PLANT 10
 
 //**************************************
-//Map matrix. Where 0 - empty space, 1 - wall, 2 - small coin, 3 - big pill, 4 - fish, 5 - Jellyfish
+//Map matrix. Where 0 - empty space, 1 - wall, 2 - plant, 3 - plankton, 4 - fish, 5 - Jellyfish, 6 - score Counter
 //FIELD_MATRIX[y][x]
 //**************************************
 const int FIELD_MATRIX[FIELD_HEIGHT_CELLS][FIELD_WIDTH_CELLS] = {
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 
     {1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1}, 

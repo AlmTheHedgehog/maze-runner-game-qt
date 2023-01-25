@@ -66,7 +66,6 @@ void Creature::onTick(){
     }else if(getX() > CELL_PIXEL_SIZE*FIELD_WIDTH_CELLS+HEROES_SIZE){
         setPosition(-HEROES_SIZE, getY());
     }
-
     move(xSpeed, ySpeed);  //if curMove == noMove than vector is 0 and we are busy-waiting(probably use condition var)
 }
 

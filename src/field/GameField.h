@@ -8,6 +8,7 @@
 #include "GlobalVars.h"
 #include "Plant.h"
 #include "Plankton.h"
+#include "ScoreCounter.h"
 
 class GameField : public QWidget {
     Q_OBJECT
@@ -26,12 +27,13 @@ class GameField : public QWidget {
         QLabel backGroundPicture;
         QTimer gameTimer;
         Jellyfish *mainHero;
-        std::vector<Item> items;
-
+        std::vector<std::unique_ptr<Item>> itemsPtrs;
+        ScoreCounter *scoreCounter;
         void initBackGroundPicture();
         void initField();
         void initHeroes();
         void keyPressEvent(QKeyEvent *event);
+        void giveJellyfishSuperPower();
 
 };
 

@@ -13,6 +13,7 @@ GameField::GameField(short int heightInCells, short int widthInCells):
 
 GameField::~GameField(){
     delete mainHero;
+    delete scoreCounter;
 }
 
 void GameField::initBackGroundPicture(){
@@ -27,14 +28,17 @@ void GameField::initField(){
         for(int x = 0; x < FIELD_WIDTH_CELLS; x++){
             switch(GameFieldLayout::getCellType(x, y)){
                 case GameFieldLayout::plantCell:
-                    items.push_back(Plant(this, x, y));
+                    itemsPtrs.push_back(std::make_unique<Plant>(this, x, y));
                     break;
                 case GameFieldLayout::planktonCell:
-                    items.push_back(Plankton(this, x, y));
+                    itemsPtrs.push_back(std::make_unique<Plankton>(this, x, y));
                     break;
                 case GameFieldLayout::jellyfishCell:
                     jellyfishCoord[0] = x;
                     jellyfishCoord[1] = y;
+                    break;
+                case GameFieldLayout::scoreCell:
+                    scoreCounter = new ScoreCounter(this, x, y);
                     break;
             }
         }
@@ -52,12 +56,18 @@ void GameField::keyPressEvent(QKeyEvent *event){
     mainHero->keyPressProcessing(event);
 }
 
+void GameField::giveJellyfishSuperPower(){
+    //TODO when jellyfish can eat fish
+}
+
 void GameField::checkJellyfishCollision(){
-    for(auto element = items.begin(); element!=items.end(); ++element){
-        if((*element).isCollision(mainHero)){
-            items.erase(element);
-            // TODO give point / ability to eat fish
-            //in distructor plant and plakton have to emit signal plantEaten()||planktonEaten(). Connect points counter to both and GamaField to planktonEaten() to let jellyfish eat fish
+    for(auto element = itemsPtrs.begin(); element!=itemsPtrs.end(); ++element){
+        if((*element)->isCollision(mainHero)){
+            scoreCounter->addScore((*element)->pointsCost);
+            if((*element)->isWithSuperPower){
+                giveJellyfishSuperPower();
+            }
+            itemsPtrs.erase(element);
             return;
         }
     }

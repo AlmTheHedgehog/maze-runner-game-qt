@@ -28,7 +28,7 @@
 #define SCORE_FOR_FISH 500
 #define SCORE_FOR_PLANKTON 200
 #define SCORE_FOR_PLANT 10
-#define SCARY_TIME_SECONDS 7
+#define SCARY_TIME_SECONDS 5
 
 //**************************************
 //Map matrix. Where 0 - empty space, 1 - wall, 2 - plant, 3 - plankton, 4 - fish, 5 - Jellyfish, 6 - score Counter

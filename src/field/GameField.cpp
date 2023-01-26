@@ -27,7 +27,7 @@ void GameField::initBackGroundPicture(){
 }
 
 void GameField::initField(){
-    int jellyfishCoord[2], 
+    int jellyfishCoord[2] = {0}, 
         fishCoords[NUMBER_OF_FISH][2], 
         index = 0;
     for(int y = 0; y < FIELD_HEIGHT_CELLS; y++){

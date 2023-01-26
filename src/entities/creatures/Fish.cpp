@@ -96,19 +96,22 @@ void Fish::runFromJellyfish(CatchDirection dirModifire){
 
 void Fish::escapeOnX(CatchDirection dirModifire){
     if(jellyfishVector.x == 0){
-        if(curMove == noMove){
-            if(jellyfishVector.y > 0){
-                if(!isNextPixelCellWall(static_cast<MoveDirection>(moveUp + dirModifire))){
-                    newMoveDir(static_cast<MoveDirection>(moveUp + dirModifire));
-                    return;
-                }
-            }else{
-                if(!isNextPixelCellWall(static_cast<MoveDirection>(moveDown - dirModifire))){
-                    newMoveDir(static_cast<MoveDirection>(moveDown - dirModifire));
+        if(jellyfishVector.y > 0){
+            for(int yCounter = getY(); (yCounter + HEROES_SIZE) < jellyfishCoords[1]; yCounter += HALF_OF_CELL){
+                if(GameFieldLayout::isCreatureInWall(jellyfishCoords[0], yCounter)){
+					newMoveDir(static_cast<MoveDirection>(QRandomGenerator::global()->bounded(0, 4)));
                     return;
                 }
             }
-            newMoveDir(static_cast<MoveDirection>(QRandomGenerator::global()->bounded(2, 4)));
+            newMoveDir(static_cast<MoveDirection>(moveUp + dirModifire));
+        }else{
+            for(int yCounter = getY(); yCounter > (jellyfishCoords[1] + HEROES_SIZE); yCounter -= HALF_OF_CELL){
+                if(GameFieldLayout::isCreatureInWall(jellyfishCoords[0], yCounter)){
+					newMoveDir(static_cast<MoveDirection>(QRandomGenerator::global()->bounded(0, 4)));
+                    return;
+                }
+            }
+            newMoveDir(static_cast<MoveDirection>(moveDown - dirModifire));
         }
         return;
     }else if(jellyfishVector.x > 0){
@@ -147,19 +150,22 @@ void Fish::escapeOnX(CatchDirection dirModifire){
 
 void Fish::escapeOnY(CatchDirection dirModifire){
     if(jellyfishVector.y == 0){
-        if(curMove == noMove){
-            if(jellyfishVector.x > 0){
-                if(!isNextPixelCellWall(static_cast<MoveDirection>(moveLeft + dirModifire))){
-                    newMoveDir(static_cast<MoveDirection>(moveLeft + dirModifire));
-                    return;
-                }
-            }else{
-                if(!isNextPixelCellWall(static_cast<MoveDirection>(moveRight - dirModifire))){
-                    newMoveDir(static_cast<MoveDirection>(moveRight - dirModifire));
+        if(jellyfishVector.x > 0){
+            for(int xCounter = getX(); (xCounter + HEROES_SIZE) < jellyfishCoords[0]; xCounter += HALF_OF_CELL){
+                if(GameFieldLayout::isCreatureInWall(xCounter, jellyfishCoords[1])){
+					newMoveDir(static_cast<MoveDirection>(QRandomGenerator::global()->bounded(0, 4)));
                     return;
                 }
             }
-            newMoveDir(static_cast<MoveDirection>(QRandomGenerator::global()->bounded(2, 4)));
+            newMoveDir(static_cast<MoveDirection>(moveLeft + dirModifire));
+        }else{
+            for(int xCounter = getX(); xCounter > (jellyfishCoords[0] + HEROES_SIZE); xCounter -= HALF_OF_CELL){
+                if(GameFieldLayout::isCreatureInWall(xCounter, jellyfishCoords[1])){
+					newMoveDir(static_cast<MoveDirection>(QRandomGenerator::global()->bounded(0, 4)));
+                    return;
+                }
+            }
+            newMoveDir(static_cast<MoveDirection>(moveRight - dirModifire));
         }
         return;
     }else if(jellyfishVector.y > 0){

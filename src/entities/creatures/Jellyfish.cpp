@@ -1,18 +1,27 @@
 #include "Jellyfish.h"
 
 Jellyfish::Jellyfish(QWidget* parent, int xCell, int yCell):
-                Creature(parent, QPixmap(":/creatures/Jellyfish_ball.png"), JELLYFISH_SPEED, xCell, yCell,
-                ":/creatures/Jellyfish_ball.png", 
-                ":/creatures/Jellyfish_up.png", 
-                ":/creatures/Jellyfish_down.png",
-                ":/creatures/Jellyfish_left.png", 
-                ":/creatures/Jellyfish_right.png", 
+                Creature(parent, QPixmap(":/creatures/jellyfish/Jellyfish_ball.png"), JELLYFISH_SPEED, xCell, yCell,
+                ":/creatures/jellyfish/Jellyfish_ball.png", 
+                ":/creatures/jellyfish/Jellyfish_up.png", 
+                ":/creatures/jellyfish/Jellyfish_down.png",
+                ":/creatures/jellyfish/Jellyfish_left.png", 
+                ":/creatures/jellyfish/Jellyfish_right.png", 
                 ((1000/JELLYFISH_IMAGE_CHANGE_PER_SECOND)/(1000/FPS))){
+    isScary = false;
     setImage(sprites.right_Img);
     sprites.curImg = sprites.Right;
     curMove = moveRight;
     setSpeedVector(curMove);
     nextMove = noMove;
+}
+
+void Jellyfish::makeScary(){
+    isScary = true;
+}
+
+void Jellyfish::makeNotScary(){
+    isScary = false;
 }
 
 void Jellyfish::keyPressProcessing(QKeyEvent *event){
@@ -40,15 +49,10 @@ void Jellyfish::preMoveActiononOnTick(){
     }
     if(curMove != noMove){
         emit jellyfishMoved();
-    }
-}
-
-void Jellyfish::newMoveDir(MoveDirection newDir){
-    if(curMove == noMove){
-        curMove = newDir;
-        setSpeedVector(curMove);
-    }else{
-        nextMove = newDir;
+        emit updateJellyfishCoords(getX(), getY());
+        if(isScary){
+            emit checkCollisionWithJellyFish(getX(), getY());
+        }
     }
 }
 
@@ -79,4 +83,8 @@ void Jellyfish::changeMoveImg(MoveDirection curMove){
         case noMove:
             break;
     }
+}
+
+void Jellyfish::checkCollisionWithFish(int xFish, int yFish){
+    //TODO wait during notScared Fish. if true then defeat
 }

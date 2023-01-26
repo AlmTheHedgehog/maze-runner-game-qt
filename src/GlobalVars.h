@@ -15,16 +15,19 @@
 #define JELLYFISH_IMAGE_CHANGE_PER_SECOND 8
 
 //**************************************
-//Speeds
+//Speeds (normal 1(could be 2, 4))
 //**************************************
-#define JELLYFISH_SPEED 1  // 1- good
+#define JELLYFISH_SPEED 1
+#define FISH_SPEED 1
+#define ANGRY_FISH_SPEED_MULTIPLIER 2
 
 //**************************************
 //Global
 //**************************************
-#define NUMBER_OF_CREATURES 5
+#define NUMBER_OF_FISH 4  // Have to be 4!
 #define SCORE_FOR_PLANKTON 200
 #define SCORE_FOR_PLANT 10
+#define SCARY_TIME_SECONDS 7
 
 //**************************************
 //Map matrix. Where 0 - empty space, 1 - wall, 2 - plant, 3 - plankton, 4 - fish, 5 - Jellyfish, 6 - score Counter

@@ -48,6 +48,15 @@ bool Creature::isNextPixelCellWall(MoveDirection moveDirToCheck){
     }
 }
 
+void Creature::newMoveDir(MoveDirection newDir){
+    if(curMove == noMove){
+        curMove = newDir;
+        setSpeedVector(curMove);
+    }else{
+        nextMove = newDir;
+    }
+}
+
 void Creature::onTick(){
     preMoveActiononOnTick();
 
@@ -60,13 +69,15 @@ void Creature::onTick(){
         curMove = noMove;
         setSpeedVector(0, 0);
     }
+    if(curMove != noMove){
+        move(xSpeed, ySpeed);
+    }
     
     if(getX() < -HEROES_SIZE ){
         setPosition(CELL_PIXEL_SIZE*FIELD_WIDTH_CELLS+HEROES_SIZE, getY());
     }else if(getX() > CELL_PIXEL_SIZE*FIELD_WIDTH_CELLS+HEROES_SIZE){
         setPosition(-HEROES_SIZE, getY());
     }
-    move(xSpeed, ySpeed);  //if curMove == noMove than vector is 0 and we are busy-waiting(probably use condition var)
 }
 
 Creature::SpritesContainer::SpritesContainer(QString ballFile, QString up_File, QString down_File, 

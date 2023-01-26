@@ -1,12 +1,39 @@
 <RCC>
     <qresource prefix="/">
         <file>field/map-cell16px.png</file>
-        <file>creatures/Jellyfish_ball.png</file>
-        <file>creatures/Jellyfish_up.png</file>
-        <file>creatures/Jellyfish_down.png</file>
-        <file>creatures/Jellyfish_left.png</file>
-        <file>creatures/Jellyfish_right.png</file>
+
+        <file>creatures/jellyfish/Jellyfish_ball.png</file>
+        <file>creatures/jellyfish/Jellyfish_up.png</file>
+        <file>creatures/jellyfish/Jellyfish_down.png</file>
+        <file>creatures/jellyfish/Jellyfish_left.png</file>
+        <file>creatures/jellyfish/Jellyfish_right.png</file>
+
         <file>collectableItems/Plankton.png</file>
         <file>collectableItems/Plant.png</file>
+
+        <file>creatures/fish/gold/fish_gold_up.png</file>
+        <file>creatures/fish/gold/fish_gold_down.png</file>
+        <file>creatures/fish/gold/fish_gold_left.png</file>
+        <file>creatures/fish/gold/fish_gold_right.png</file>
+
+        <file>creatures/fish/green/fish_green_up.png</file>
+        <file>creatures/fish/green/fish_green_down.png</file>
+        <file>creatures/fish/green/fish_green_left.png</file>
+        <file>creatures/fish/green/fish_green_right.png</file>
+
+        <file>creatures/fish/orange/fish_orange_up.png</file>
+        <file>creatures/fish/orange/fish_orange_down.png</file>
+        <file>creatures/fish/orange/fish_orange_left.png</file>
+        <file>creatures/fish/orange/fish_orange_right.png</file>
+
+        <file>creatures/fish/red/fish_red_up.png</file>
+        <file>creatures/fish/red/fish_red_down.png</file>
+        <file>creatures/fish/red/fish_red_left.png</file>
+        <file>creatures/fish/red/fish_red_right.png</file>
+
+        <file>creatures/fish/grey/fish_grey_up.png</file>
+        <file>creatures/fish/grey/fish_grey_down.png</file>
+        <file>creatures/fish/grey/fish_grey_left.png</file>
+        <file>creatures/fish/grey/fish_grey_right.png</file>
     </qresource>
 </RCC>

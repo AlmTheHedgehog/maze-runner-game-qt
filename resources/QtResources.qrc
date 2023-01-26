@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>field/map-cell16px.png</file>
+        <file>field/map-cell16px_black.png</file>
 
         <file>creatures/jellyfish/Jellyfish_ball.png</file>
         <file>creatures/jellyfish/Jellyfish_up.png</file>

@@ -25,6 +25,7 @@
 //Global
 //**************************************
 #define NUMBER_OF_FISH 4  // Have to be 4!
+#define SCORE_FOR_FISH 500
 #define SCORE_FOR_PLANKTON 200
 #define SCORE_FOR_PLANT 10
 #define SCARY_TIME_SECONDS 7

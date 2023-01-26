@@ -1,4 +1,5 @@
 #include "GameField.h"
+#include <iostream>
 
 GameField::GameField(short int heightInCells, short int widthInCells):
                     HEIGHT_IN_CELLS(heightInCells), WIDTH_IN_CELLS(widthInCells),
@@ -7,6 +8,7 @@ GameField::GameField(short int heightInCells, short int widthInCells):
     initBackGroundPicture();
     initField();
     initHeroes();
+    initFinalScore();
 
     show();
 }
@@ -14,6 +16,8 @@ GameField::GameField(short int heightInCells, short int widthInCells):
 GameField::~GameField(){
     delete mainHero;
     delete scoreCounter;
+    delete blackBackGround;
+    delete bigScore;
 }
 
 void GameField::initBackGroundPicture(){
@@ -47,6 +51,8 @@ void GameField::initField(){
                 case GameFieldLayout::scoreCell:
                     scoreCounter = new ScoreCounter(this, x, y);
                     break;
+                default:
+                    break;
             }
         }
     }
@@ -60,15 +66,27 @@ void GameField::initField(){
 void GameField::initHeroes(){
     connect(&gameTimer, &QTimer::timeout, mainHero, &Jellyfish::onTick);
     connect(mainHero, &Jellyfish::jellyfishMoved, this, &GameField::checkJellyfishCollision);
+    connect(mainHero, &Jellyfish::endGame, this, &GameField::endGame);
 
     for(auto element = fishPtrs.begin(); element!=fishPtrs.end(); ++element){
         connect(&gameTimer, &QTimer::timeout, (*element).get(), &Fish::onTick);
         connect(mainHero, &Jellyfish::checkCollisionWithJellyFish, (*element).get(), &Fish::checkCollisionWithJellyFish);
         connect((*element).get(), &Fish::checkCollisionWithFish, mainHero, &Jellyfish::checkCollisionWithFish);
         connect(mainHero, &Jellyfish::updateJellyfishCoords, (*element).get(), &Fish::updateJellyfishCoords);
+        connect((*element).get(), &Fish::wasJellyfishAteFish, this, &GameField::fishWasEaten);
     }
 
     gameTimer.start(1000/FPS);
+}
+
+void GameField::initFinalScore(){
+    blackBackGround = new QLabel(this);
+    blackBackGround->move(0, 0);
+    blackBackGround->setFixedSize(WIDTH_IN_CELLS * CELL_PIXEL_SIZE, HEIGHT_IN_CELLS * CELL_PIXEL_SIZE);
+    bigScore = new QLabel(this);
+    bigScore->move(CELL_PIXEL_SIZE * 2, HEIGHT_IN_CELLS * CELL_PIXEL_SIZE / 2);
+    bigScore->setFixedSize(WIDTH_IN_CELLS * CELL_PIXEL_SIZE, CELL_PIXEL_SIZE * 2);
+    bigScore->setFont(QFont("Liberation Serif", 25, QFont::Bold, true));
 }
 
 void GameField::keyPressEvent(QKeyEvent *event){
@@ -90,6 +108,25 @@ void GameField::takeJellyfishSuperPower(){
     }
 }
 
+void GameField::fishWasEaten(){
+    for(auto element = fishPtrs.begin(); element!=fishPtrs.end(); ++element){
+        if((*element)->wasEaten){
+            fishPtrs.erase(element);
+            scoreCounter->addScore(SCORE_FOR_FISH);
+            if(itemsPtrs.empty() && fishPtrs.empty()){
+                endGame();
+            }
+            return;
+        }
+    }
+}
+
+void GameField::endGame(){
+    gameTimer.stop();
+    blackBackGround->setPixmap(QPixmap(":/field/map-cell16px_black.png"));
+    bigScore->setText("Your score:" + QString::number(scoreCounter->getScore()));
+}
+
 void GameField::checkJellyfishCollision(){
     for(auto element = itemsPtrs.begin(); element!=itemsPtrs.end(); ++element){
         if((*element)->isCollision(mainHero)){
@@ -98,6 +135,9 @@ void GameField::checkJellyfishCollision(){
                 giveJellyfishSuperPower();
             }
             itemsPtrs.erase(element);
+            if(itemsPtrs.empty() && fishPtrs.empty()){
+                endGame();
+            }
             return;
         }
     }

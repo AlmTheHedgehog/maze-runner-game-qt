@@ -86,5 +86,11 @@ void Jellyfish::changeMoveImg(MoveDirection curMove){
 }
 
 void Jellyfish::checkCollisionWithFish(int xFish, int yFish){
-    //TODO wait during notScared Fish. if true then defeat
+    if(((getX() + CELL_PIXEL_SIZE + HALF_OF_CELL) > (xFish + HALF_OF_CELL/2)) && 
+        ((getX() + (HALF_OF_CELL/2)) < (xFish + HEROES_SIZE - HALF_OF_CELL/2))){
+        if(((getY() + CELL_PIXEL_SIZE + HALF_OF_CELL) > (yFish + HALF_OF_CELL/2)) && 
+        ((getY() + (HALF_OF_CELL/2)) < (yFish + HEROES_SIZE - HALF_OF_CELL/2))){
+            emit endGame();
+        }
+    }
 }

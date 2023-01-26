@@ -17,6 +17,7 @@ class Jellyfish : public Creature{
         void jellyfishMoved();
         void checkCollisionWithJellyFish(int xJellyFish, int yJellyFish);
         void updateJellyfishCoords(int xJellyFish, int yJellyFish);
+        void endGame();
 
     protected:
         void preMoveActiononOnTick() override;

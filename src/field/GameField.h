@@ -26,9 +26,12 @@ class GameField : public QWidget {
     public slots:
         void checkJellyfishCollision();  //TODO connect to wasMoved signal of Jellyfish. Use EachColactable.isCollision(). If it returns true, then delete item from items array and make an action(add points / eat ghosts).
         void takeJellyfishSuperPower();
+        void fishWasEaten();
+        void endGame();
 
     private:
         QLabel backGroundPicture;
+        QLabel *bigScore, *blackBackGround;
         QTimer gameTimer;
         Jellyfish *mainHero;
         std::vector<std::unique_ptr<Item>> itemsPtrs;
@@ -37,6 +40,7 @@ class GameField : public QWidget {
         void initBackGroundPicture();
         void initField();
         void initHeroes();
+        void initFinalScore();
         void keyPressEvent(QKeyEvent *event);
         void giveJellyfishSuperPower();
 

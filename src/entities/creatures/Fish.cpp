@@ -216,7 +216,14 @@ bool Fish::isFreeSpaceNear(){
 }
 
 void Fish::checkCollisionWithJellyFish(int xJellyFish, int yJellyFish){
-    //TODO wait during scared. if thue then delete this fish
+    if(((getX() + CELL_PIXEL_SIZE + HALF_OF_CELL) > (xJellyFish + HALF_OF_CELL/2)) && 
+        ((getX() + (HALF_OF_CELL/2)) < (xJellyFish + HEROES_SIZE - HALF_OF_CELL/2))){
+        if(((getY() + CELL_PIXEL_SIZE + HALF_OF_CELL) > (yJellyFish + HALF_OF_CELL/2)) && 
+        ((getY() + (HALF_OF_CELL/2)) < (yJellyFish + HEROES_SIZE - HALF_OF_CELL/2))){
+            wasEaten = true;
+            emit wasJellyfishAteFish();
+        }
+    }
 }
 
 Fish::GreySpritesContainer::GreySpritesContainer(): up_Img(QPixmap(":/creatures/fish/grey/fish_grey_up.png")), 

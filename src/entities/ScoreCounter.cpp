@@ -4,6 +4,7 @@ ScoreCounter::ScoreCounter(QWidget *parent, int xCell, int yCell):Entity(parent,
     setFixedSize(300, 30);
     setScore(0);
     setFont(QFont("Arial", 20, QFont::Bold));
+    setStyleSheet("QLabel { color : white; }");
 }
 
 void ScoreCounter::addScore(int scoreToBeAdded){

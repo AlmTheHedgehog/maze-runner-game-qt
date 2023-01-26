@@ -87,6 +87,7 @@ void GameField::initFinalScore(){
     bigScore->move(CELL_PIXEL_SIZE * 2, HEIGHT_IN_CELLS * CELL_PIXEL_SIZE / 2);
     bigScore->setFixedSize(WIDTH_IN_CELLS * CELL_PIXEL_SIZE, CELL_PIXEL_SIZE * 2);
     bigScore->setFont(QFont("Liberation Serif", 25, QFont::Bold, true));
+    bigScore->setStyleSheet("QLabel { color : white; }");
 }
 
 void GameField::keyPressEvent(QKeyEvent *event){
